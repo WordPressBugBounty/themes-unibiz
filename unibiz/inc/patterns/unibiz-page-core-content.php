@@ -3,7 +3,7 @@
  * Pattern content.
  */
 return array(
-	'title'      => __( 'Unibiz Page Core Content', 'unibiz' ),
+	'title'      => __( 'Unibiz Page Core Content', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
 	'content'    => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"48px","bottom":"80px","right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1140px","contentSize":"1140px"}} -->
 <div class="wp-block-group alignfull" style="padding-top:48px;padding-right:20px;padding-bottom:80px;padding-left:20px"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"60px","left":"60px"}}}} -->

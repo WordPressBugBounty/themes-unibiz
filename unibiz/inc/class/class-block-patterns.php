@@ -54,12 +54,12 @@ class Block_Patterns {
 	 */
 	private function register_block_patterns() {
 		$block_pattern_categories = array(
-			'unibiz-core' => array( 'label' => __( 'Unibiz Core Patterns', 'unibiz' ) ),
+			'unibiz-core' => array( 'label' => esc_html__( 'Unibiz Core Patterns', 'unibiz' ) ),
 		);
 
 		if ( defined( 'GUTENVERSE' ) ) {
-			$block_pattern_categories['unibiz-gutenverse'] = array( 'label' => __( 'Unibiz Gutenverse Patterns', 'unibiz' ) );
-			$block_pattern_categories['unibiz-pro'] = array( 'label' => __( 'Unibiz Gutenverse PRO Patterns', 'unibiz' ) );
+			$block_pattern_categories['unibiz-gutenverse'] = array( 'label' => esc_html__( 'Unibiz Gutenverse Patterns', 'unibiz' ) );
+			$block_pattern_categories['unibiz-pro'] = array( 'label' => esc_html__( 'Unibiz Gutenverse PRO Patterns', 'unibiz' ) );
 		}
 
 		$block_pattern_categories = apply_filters( 'unibiz_block_pattern_categories', $block_pattern_categories );
@@ -71,12 +71,55 @@ class Block_Patterns {
 		}
 
 		$block_patterns = array(
-            'unibiz-single-core-hero',			'unibiz-single-core-content',			'unibiz-archive-core-hero',			'unibiz-core-post-block',			'unibiz-search-core-hero',			'unibiz-search-core-search',			'unibiz-core-404',			'unibiz-index-core-hero',			'unibiz-core-post-block',			'unibiz-page-no-sidebar-core-hero',			'unibiz-page-no-sidebar-core-content',			'unibiz-core-footer-alternate',			'unibiz-core-home-hero',			'unibiz-core-home-benefits',			'unibiz-core-home-about',			'unibiz-core-home-services',			'unibiz-core-home-clients',			'unibiz-core-home-authority',			'unibiz-core-home-testimonials',			'unibiz-core-home-blog',			'unibiz-page-core-hero',			'unibiz-page-core-content',
+			'unibiz-single-core-hero',
+			'unibiz-single-core-content',
+			'unibiz-archive-core-hero',
+			'unibiz-core-post-block',
+			'unibiz-search-core-hero',
+			'unibiz-search-core-search',
+			'unibiz-core-404',
+			'unibiz-index-core-hero',
+			'unibiz-core-post-block',
+			'unibiz-page-no-sidebar-core-hero',
+			'unibiz-page-no-sidebar-core-content',
+			'unibiz-core-footer-alternate',
+			'unibiz-core-home-hero',
+			'unibiz-core-home-about',
+			'unibiz-core-home-services',
+			'unibiz-core-home-clients',
+			'unibiz-core-home-authority',
+			'unibiz-core-home-testimonials',
+			'unibiz-core-home-blog',
+			'unibiz-page-core-hero',
+			'unibiz-page-core-content',
 		);
 
 		if ( defined( 'GUTENVERSE' ) ) {
-            $block_patterns[] = 'unibiz-index-gutenverse-hero';			$block_patterns[] = 'unibiz-gutenverse-post-block';			$block_patterns[] = 'unibiz-archive-gutenverse-hero';			$block_patterns[] = 'unibiz-gutenverse-post-block';			$block_patterns[] = 'unibiz-search-gutenverse-hero';			$block_patterns[] = 'unibiz-search-gutenverse-search';			$block_patterns[] = 'unibiz-single-gutenverse-hero';			$block_patterns[] = 'unibiz-single-gutenverse-content';			$block_patterns[] = 'unibiz-gutenverse-404';			$block_patterns[] = 'unibiz-gutenverse-header';			$block_patterns[] = 'unibiz-gutenverse-footer';			$block_patterns[] = 'unibiz-gutenverse-header-alternate';			$block_patterns[] = 'unibiz-gutenverse-footer-alternate';			$block_patterns[] = 'unibiz-page-no-sidebar-gutenverse-hero';			$block_patterns[] = 'unibiz-page-no-sidebar-gutenverse-content';			$block_patterns[] = 'unibiz-gutenverse-home-hero';			$block_patterns[] = 'unibiz-gutenverse-home-benefits';			$block_patterns[] = 'unibiz-gutenverse-home-about';			$block_patterns[] = 'unibiz-gutenverse-home-services';			$block_patterns[] = 'unibiz-gutenverse-home-clients';			$block_patterns[] = 'unibiz-gutenverse-home-authority';			$block_patterns[] = 'unibiz-gutenverse-home-testimonials';			$block_patterns[] = 'unibiz-gutenverse-home-blog';			$block_patterns[] = 'unibiz-page-gutenverse-hero';			$block_patterns[] = 'unibiz-page-gutenverse-content';
-            
+			$block_patterns[] = 'unibiz-index-gutenverse-hero';
+			$block_patterns[] = 'unibiz-gutenverse-post-block';
+			$block_patterns[] = 'unibiz-archive-gutenverse-hero';
+			$block_patterns[] = 'unibiz-gutenverse-post-block';
+			$block_patterns[] = 'unibiz-search-gutenverse-hero';
+			$block_patterns[] = 'unibiz-search-gutenverse-search';
+			$block_patterns[] = 'unibiz-single-gutenverse-hero';
+			$block_patterns[] = 'unibiz-single-gutenverse-content';
+			$block_patterns[] = 'unibiz-gutenverse-404';
+			$block_patterns[] = 'unibiz-gutenverse-header';
+			$block_patterns[] = 'unibiz-gutenverse-footer';
+			$block_patterns[] = 'unibiz-gutenverse-header-alternate';
+			$block_patterns[] = 'unibiz-gutenverse-footer-alternate';
+			$block_patterns[] = 'unibiz-page-no-sidebar-gutenverse-hero';
+			$block_patterns[] = 'unibiz-page-no-sidebar-gutenverse-content';
+			$block_patterns[] = 'unibiz-gutenverse-home-hero';
+			$block_patterns[] = 'unibiz-gutenverse-home-about';
+			$block_patterns[] = 'unibiz-gutenverse-home-services';
+			$block_patterns[] = 'unibiz-gutenverse-home-clients';
+			$block_patterns[] = 'unibiz-gutenverse-home-authority';
+			$block_patterns[] = 'unibiz-gutenverse-home-testimonials';
+			$block_patterns[] = 'unibiz-gutenverse-home-blog';
+			$block_patterns[] = 'unibiz-page-gutenverse-hero';
+			$block_patterns[] = 'unibiz-page-gutenverse-content';
+			
 		}
 
 		$block_patterns = apply_filters( 'unibiz_block_patterns', $block_patterns );
@@ -85,6 +128,17 @@ class Block_Patterns {
 			$pattern_list = array();
 		}
 
+		$active_slug = get_stylesheet();
+		$inserted_content = get_option(
+			"gutenverse_{$active_slug}_content_inserted",
+			array(
+				'pages'    => array(),
+				'patterns' => array(),
+				'menus'    => array(),
+				'content_has_menus' => array(),
+			)
+		);
+
 		if ( function_exists( 'register_block_pattern' ) ) {
 			foreach ( $block_patterns as $block_pattern ) {
 				$pattern_file = get_theme_file_path( '/inc/patterns/' . $block_pattern . '.php' );
@@ -92,24 +146,58 @@ class Block_Patterns {
 
 				if ( (bool) $pattern_data['is_sync'] ) {
 					$post = get_page_by_path( $block_pattern . '-synced', OBJECT, 'wp_block' );
+					$post_id = $post ? $post->ID : null;
 					if ( empty( $post ) ) {
 						/**Download Image */
 						$content = wp_slash( $pattern_data['content'] );
-						if ( isset( $pattern_data['images'] ) ) {
+						$image_importer_ver = $pattern_data['image_importer_ver'] ?? null;
+						if ( isset( $pattern_data['images'] ) && ! empty( $pattern_data['images'] ) ) {
 							$images = json_decode( $pattern_data['images'] );
-							foreach ( $images as $key => $image ) {
-								$url  = $image->image_url;
-								$data = Helper::check_image_exist( $url );
-								if ( ! $data ) {
-									$data = Helper::handle_file( $url );
+							if ( ! $image_importer_ver ) {
+								foreach ( $images as $key => $image ) {
+									$url  = $image->image_url;
+									$data = Helper::check_image_exist( $url );
+									if ( ! $data ) {
+										$data = Helper::handle_file( $url );
+									}
+									$content  = str_replace( $url, $data['url'], $content );
+									$image_id = $image->image_id;
+									if ( $image_id && 'null' !== $image_id ) {
+										$content = str_replace( '"imageId\":' . $image_id, '"imageId\":' . $data['id'], $content );
+									}
 								}
-								$content = str_replace( $url, $data['url'], $content );
-								$image_id = $image->image_id;
-								if ( $image_id && 'null' !== $image_id ) {
-									$content = str_replace( '"imageId\":' . $image_id, '"imageId\":' . $data['id'], $content );
+							} else {
+								foreach ( $images as $key => $image ) {
+									$url     = $key;
+									$pattern = $image->pattern;
+									$data    = Helper::check_image_exist( $url );
+									if ( ! $data ) {
+										$data = Helper::handle_file( $url );
+									}
+									foreach ( $pattern as $p ) {
+										$placeholder_arr        = explode( '|', trim( $p, '{}' ) );
+										$placeholder_value_type = end( $placeholder_arr );
+										switch ( $placeholder_value_type ) {
+											case 'url':
+												$placeholder_data_type = $placeholder_arr[1];
+												if ( 'case2' === $placeholder_data_type ) {
+													$placeholder_data_size = $placeholder_arr[3];
+													$target                = wp_get_attachment_image_url( $data['id'], $placeholder_data_size );
+												} else {
+													$target = wp_get_attachment_url( $data['id'] );
+												}
+												break;
+											case 'id':
+											default:
+												$target = $data['id'];
+												break;
+										}
+										$content = str_replace( $p, $target, $content );
+									}
 								}
 							}
 						}
+						$content = $this->decode_unicode_sequences($content);
 						$post_id = wp_insert_post(
 							array(
 								'post_name'    => $block_pattern . '-synced',
@@ -120,9 +208,16 @@ class Block_Patterns {
 								'post_type'    => 'wp_block',
 							)
 						);
+						if ( isset( $pattern_data['placeholder'] ) ) {
+							$inserted_content['patterns'][] = array(
+								'id' => $post_id,
+								'is_remapped' => false,
+								'placeholder' => ! empty( $pattern_data['placeholder'] ) ? $pattern_data['placeholder'] : '',
+							);
+						}
 						if ( ! is_wp_error( $post_id ) ) {
 							$pattern_category = $pattern_data['categories'];
-							foreach( $pattern_category as $category ){
+							foreach ( $pattern_category as $category ) {
 								wp_set_object_terms( $post_id, $category, 'wp_pattern_category' );
 							}
 						}
@@ -131,7 +226,19 @@ class Block_Patterns {
 						$pattern_data['slug']     = $block_pattern;
 
 						$pattern_list[] = $pattern_data;
+						/**Check if content has menu */
+						$normalized_content = wp_unslash( $content );
+						preg_match_all(
+							'/"menuId"\s*:\s*(?:"(\d+)"|(\d+))/',
+							$normalized_content,
+							$matches
+						);
+
+						if ( ! empty( array_filter( array_merge( $matches[1], $matches[2] ) ) ) ) {
+							$inserted_content['content_has_menus'][] = $post_id;
+						}
 					}
+					
 				} else {
 					register_block_pattern(
 						'unibiz/' . $block_pattern,
@@ -139,8 +246,43 @@ class Block_Patterns {
 					);
 				}
 			}
+			
 			update_option( 'unibiz_synced_pattern_imported', $pattern_list );
+			update_option(
+				"gutenverse_{$active_slug}_content_inserted",
+				$inserted_content
+			);
 		}
+	}
+
+	/**
+	 * Decode unicode sequences
+	 *
+	 * @param string $content .
+	 * @return string
+	 */
+	private function decode_unicode_sequences( $content ) {
+		return preg_replace_callback(
+			'/\\\\u([0-9a-fA-F]{4})/',
+			function ( $matches ) {
+
+				$hex = strtolower( $matches[1] );
+
+				// Always keep quotes escaped.
+				if ( '0022' === $hex ) {
+					return '\"';
+				}
+
+				$codepoint = hexdec( $hex );
+
+				return mb_convert_encoding(
+					pack( 'n', $codepoint ),
+					'UTF-8',
+					'UTF-16BE'
+				);
+			},
+			$content
+		);
 	}
 
 	/**

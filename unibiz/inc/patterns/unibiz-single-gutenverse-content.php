@@ -3,7 +3,7 @@
  * Pattern content.
  */
 return array(
-	'title'      => __( 'Unibiz Single Gutenverse Content', 'unibiz' ),
+	'title'      => __( 'Unibiz Single Gutenverse Content', 'unibiz' ),
 	'categories' => array( 'unibiz-gutenverse' ),
 	'content'    => '<!-- wp:gutenverse/section {"width":{"Desktop":"1120"},"gap":"no","elementId":"guten-WvJth3","padding":{"Desktop":{"unit":"px","dimension":{"top":"48","right":"0","bottom":"80","left":"0"}},"Tablet":{"unit":"px","dimension":{"right":"20","left":"20"}}}} -->
 <div class="section-wrapper" data-id="WvJth3"><section class="wp-block-gutenverse-section guten-element guten-section guten-WvJth3 layout-boxed align-stretch"><div class="guten-container guten-column-gap-no"><!-- wp:gutenverse/column {"width":{"Desktop":75,"Tablet":100},"elementId":"guten-eVgN2J","padding":{"Desktop":{"unit":"px","dimension":{"top":"0","right":"60","bottom":"0","left":"0"}},"Mobile":{"unit":"px","dimension":{"top":"0","right":"0","bottom":"0","left":"0"}},"Tablet":{"unit":"px","dimension":{"right":"0"}}}} -->

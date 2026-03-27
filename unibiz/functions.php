@@ -7,10 +7,10 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
-defined( 'UNIBIZ_VERSION' ) || define( 'UNIBIZ_VERSION', '1.0.6' );
+defined( 'UNIBIZ_VERSION' ) || define( 'UNIBIZ_VERSION', '1.0.7' );
 defined( 'UNIBIZ_DIR' ) || define( 'UNIBIZ_DIR', trailingslashit( get_template_directory() ) );
 
 defined( 'GUTENVERSE_COMPANION_REQUIRED_VERSION' ) || define( 'GUTENVERSE_COMPANION_REQUIRED_VERSION', '2.0.0' );

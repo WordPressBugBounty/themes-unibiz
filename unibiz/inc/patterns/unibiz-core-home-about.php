@@ -5,8 +5,8 @@
 return array(
 	'title'      => __( 'Unibiz Core Home About', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
-	'content'    => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
-<div class="wp-block-group alignfull" style="padding-right:20px;padding-left:20px"><!-- wp:columns {"className":"unibiz-feature-container","style":{"spacing":{"blockGap":{"top":"40px","left":"140px"}}}} -->
+	'content'    => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"right":"20px","left":"20px","top":"150px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
+<div class="wp-block-group alignfull" style="padding-top:150px;padding-right:20px;padding-left:20px"><!-- wp:columns {"className":"unibiz-feature-container","style":{"spacing":{"blockGap":{"top":"40px","left":"140px"}}}} -->
 <div class="wp-block-columns unibiz-feature-container"><!-- wp:column {"width":"614px"} -->
 <div class="wp-block-column" style="flex-basis:614px"><!-- wp:group {"style":{"spacing":{"blockGap":"64px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
 <div class="wp-block-group"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -40,7 +40,7 @@ return array(
 <!-- wp:column {"layout":{"type":"default"}} -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"24px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"top":"12px","bottom":"12px","left":"12px","right":"12px"}},"border":{"radius":"100px"}},"backgroundColor":"gv-color-background-secondary","layout":{"type":"flex","orientation":"vertical"}} -->
-<div class="wp-block-group has-gv-color-background-secondary-background-color has-background" style="border-radius:100px;padding-top:12px;padding-right:12px;padding-bottom:12px;padding-left:12px"><!-- wp:image {"id":302,"width":"24px","height":"24px","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-default","style":{"spacing":{"margin":{"top":"-1.5px"}}}} -->
+<div class="wp-block-group has-gv-color-background-secondary-background-color has-background" style="border-radius:100px;padding-top:12px;padding-right:12px;padding-bottom:12px;padding-left:12px"><!-- wp:image {"id":302,"width":"24px","height":"24px","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-default","style":{"spacing":{"margin":{"top":"-1.5px"}},"layout":{"selfStretch":"fit","flexSize":null}}} -->
 <figure class="wp-block-image size-full is-resized is-style-default" style="margin-top:-1.5px"><img src="' . esc_url( trailingslashit( get_template_directory_uri() ) ) . 'assets/img/unibiz-benefits-2.webp" alt="" class="wp-image-302" style="object-fit:cover;width:24px;height:24px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:group -->

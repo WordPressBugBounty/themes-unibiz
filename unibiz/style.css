@@ -1,24 +1,24 @@
 /*
 Theme Name: Unibiz
-Description: Unibiz is a versatile modern WordPress theme designed for any niche with seamless Full Site Editing support and advanced customization, the first multipurpose theme fully compatible with FSE.
+Description: Unibiz is a Multipurpose Business WordPress Block Theme built for professionals and businesses that want to create a modern, high-performing website without writing a single line of code. Built with full site editing and powered by Gutenverse, this theme delivers a flexible and fully customizable platform with 50+ ready-to-import demo sites and 80+ block elements to help you launch your site in minutes. As the first Multipurpose Business theme fully compatible with FSE, Unibiz is ideal for digital agencies, finance consultants, startup companies, life coaches, human resource agencies, and adventure travel businesses looking to establish a strong online presence. With responsive layouts, a live drag-and-drop editor, global style manager, and well-structured block patterns, you can easily customize pages, services, portfolios, and testimonials to match your brand. Optimized for speed and performance, Unibiz allows you to build a professional website that reflects your identity and grows with your Multipurpose Business needs.
 Author: Jegstudio
 Author URI: https://gutenverse.com
 Theme URI: https://gutenverse.com/unibiz/
-Version: 1.0.6
-Stable tag: 1.0.6
-Requires at least: 6.4
-Tested up to: 6.8
+Version: 1.0.7
+Stable tag: 1.0.7
+Requires at least: 6.5
+Tested up to: 6.9
 Requires PHP: 7.0
 License: GNU General Public License v3 or later.
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: unibiz
+Domain Path: /languages
 Tags: block-patterns,block-styles,full-site-editing,template-editing,theme-options,right-sidebar
 Copyright: © Jegstudio. All rights reserved.
 */
 
-:root{
-    
-}
+
+
 .editor-styles-wrapper .block-editor-block-list__layout.is-root-container > .block-library-block__reusable-block-container {
     max-width: 100%;
 }

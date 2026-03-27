@@ -3,7 +3,7 @@
  * Pattern content.
  */
 return array(
-	'title'      => __( 'Unibiz Single Core Hero', 'unibiz' ),
+	'title'      => __( 'Unibiz Single Core Hero', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
 	'content'    => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"48px","bottom":"48px","left":"20px","right":"20px"}},"border":{"bottom":{"color":"#e4eaf4","width":"1px"},"top":[],"right":[],"left":[]}},"layout":{"type":"constrained","contentSize":"1140px"}} -->
 <div class="wp-block-group alignfull" style="border-bottom-color:#e4eaf4;border-bottom-width:1px;padding-top:48px;padding-right:20px;padding-bottom:48px;padding-left:20px"><!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
@@ -18,7 +18,7 @@ return array(
 <hr class="wp-block-separator has-text-color has-gv-color-border-color has-alpha-channel-opacity has-gv-color-border-background-color has-background is-style-default" style="margin-top:5px"/>
 <!-- /wp:separator -->
 
-<!-- wp:post-date {"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|gv-color-text-secondary"},":hover":{"color":{"text":"var:preset|color|gv-color-primary"}}}}},"fontSize":"mini","fontFamily":"host-grotesk"} /--></div>
+<!-- wp:post-date {"metadata":{"bindings":{"datetime":{"source":"core/post-data","args":{"field":"date"}}}},"style":{"typography":{"lineHeight":"1"},"elements":{"link":{"color":{"text":"var:preset|color|gv-color-text-secondary"},":hover":{"color":{"text":"var:preset|color|gv-color-primary"}}}}},"fontSize":"mini","fontFamily":"host-grotesk"} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->',

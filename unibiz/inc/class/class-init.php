@@ -10,6 +10,7 @@ namespace Unibiz;
 
 use WP_Query;
 
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -53,6 +54,7 @@ class Init {
 	 * Load initial hooks.
 	 */
 	private function load_hooks() {
+		add_action( 'after_setup_theme', array( $this, 'setup_theme' ) );
 		add_action( 'init', array( $this, 'register_block_patterns' ), 9 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_scripts' ) );
 
@@ -82,9 +84,9 @@ class Init {
 	 * Update Global Styles After Theme Switch
 	 */
 	public function update_global_styles_after_theme_switch() {
-		// Get the path to the current theme's theme.json file
+		// Get the path to the current theme's theme.json file.
 		$theme_json_path = get_template_directory() . '/theme.json';
-		$theme_slug      = get_option( 'stylesheet' ); // Get the current theme's slug
+		$theme_slug      = get_option( 'stylesheet' ); // Get the current theme's slug.
 		$args            = array(
 			'post_type'      => 'wp_global_styles',
 			'post_status'    => 'publish',
@@ -93,11 +95,11 @@ class Init {
 		);
 
 		$global_styles_query = new WP_Query( $args );
-		// Check if the theme.json file exists
+		// Check if the theme.json file exists.
 		if ( file_exists( $theme_json_path ) && $global_styles_query->have_posts() ) {
 			$global_styles_query->the_post();
 			$global_styles_post_id = get_the_ID();
-			// Step 2: Get the existing global styles (color palette)
+			// Step 2: Get the existing global styles (color palette).
 			$global_styles_content = json_decode( get_post_field( 'post_content', $global_styles_post_id ), true );
 			if ( isset( $global_styles_content['settings']['color']['palette']['theme'] ) ) {
 				$existing_colors = $global_styles_content['settings']['color']['palette']['theme'];
@@ -105,37 +107,42 @@ class Init {
 				$existing_colors = array();
 			}
 
-			// Step 3: Extract slugs from the existing colors
+			// Step 3: Extract slugs from the existing colors.
 			$existing_slugs = array_column( $existing_colors, 'slug' );
-			// Step 4:Read the contents of the theme.json file
+			// Step 4:Read the contents of the theme.json file.
 
-			$theme_json_content = file_get_contents( $theme_json_path );
+			global $wp_filesystem;
+			if ( empty( $wp_filesystem ) ) {
+				require_once ABSPATH . 'wp-admin/includes/file.php';
+				WP_Filesystem();
+			}
+			$theme_json_content = $wp_filesystem->get_contents( $theme_json_path );
 			$theme_json_data    = json_decode( $theme_json_content, true );
 
-			// Access the color palette from the theme.json file
+			// Access the color palette from the theme.json file.
 			if ( isset( $theme_json_data['settings']['color']['palette'] ) ) {
 
 				$theme_colors = $theme_json_data['settings']['color']['palette'];
 
-				// Step 5: Loop through theme.json colors and add them if they don't exist
+				// Step 5: Loop through theme.json colors and add them if they don't exist.
 				foreach ( $theme_colors as $theme_color ) {
 					if ( ! in_array( $theme_color['slug'], $existing_slugs ) ) {
-						$existing_colors[] = $theme_color; // Add new color to the existing palette
+						$existing_colors[] = $theme_color; // Add new color to the existing palette.
 					}
 				}
 				foreach ( $theme_colors as $theme_color ) {
 					$theme_slug = $theme_color['slug'];
 
-					// Step 6: Use in_array to check if the slug already exists in the global palette
+					// Step 6: Use in_array to check if the slug already exists in the global palette.
 					if ( ! in_array( $theme_slug, $existing_slugs ) ) {
-						// If the slug does not exist, add the theme color to the global palette
+						// If the slug does not exist, add the theme color to the global palette.
 						$global_colors[] = $theme_color;
 					}
 				}
-				// Step 6: Update the global styles content with the new colors
+				// Step 6: Update the global styles content with the new colors.
 				$global_styles_content['settings']['color']['palette']['theme'] = $existing_colors;
 
-				// Step 7: Save the updated global styles back to the post
+				// Step 7: Save the updated global styles back to the post.
 				wp_update_post(
 					array(
 						'ID'           => $global_styles_post_id,
@@ -144,8 +151,15 @@ class Init {
 				);
 
 			}
-			wp_reset_postdata(); // Reset the query
+			wp_reset_postdata(); // Reset the query.
 		}
+	}
+
+	/**
+	 * Setup theme.
+	 */
+	public function setup_theme() {
+		load_theme_textdomain( 'unibiz', get_template_directory() . '/languages' );
 	}
 
 	/**
@@ -238,10 +252,10 @@ class Init {
 				$result = array();
 				$array1 = $config['globalVariable']['fonts'];
 				$array2 = $this->default_font_variable();
-				foreach ( $array2 as $item ) { // default font
+				foreach ( $array2 as $item ) { // default font.
 					$result[ $item['id'] ] = $item;
 				}
-				foreach ( $array1 as $item ) { // overwrite fonts
+				foreach ( $array1 as $item ) { // overwrite fonts.
 					$result[ $item['id'] ] = $item;
 				}
 				$fonts = array();
@@ -1124,8 +1138,12 @@ class Init {
 
 	/**
 	 * Enqueue scripts and styles.
+	 *
+	 * @param string $hook_suffix Hook suffix.
 	 */
-	public function dashboard_scripts() {
+	public function dashboard_scripts( $hook_suffix ) {
+		
+		
 		if ( is_admin() ) {
 			// enqueue css.
 			
@@ -1160,45 +1178,54 @@ class Init {
 	 * Register static data to be used in theme's js file
 	 */
 	public function theme_config() {
+		global $pagenow;
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$active_plugins = get_option( 'active_plugins' );
 		$plugins = array();
-		foreach( $active_plugins as $active ) {
-			$plugins[] = explode( '/', $active)[0];
+		$installed_plugins = get_plugins();
+		$installed_plugin_versions = array();
+		foreach ( $active_plugins as $active ) {
+			$plugin_name = explode( '/', $active )[0];
+			$plugins[]   = $plugin_name;
+			$installed_plugin_versions[ $plugin_name ] = isset( $installed_plugins[ $active ] ) ? $installed_plugins[ $active ]['Version'] : '1.0.0';
 		}
 
 		$config = array(
-			'home_url'     => home_url(),
-			'version'      => UNIBIZ_VERSION,
-			'images'       => get_template_directory_uri() . '/assets/img/',
-			'title'        => esc_html__( 'Unibiz', 'unibiz' ),
-			'description'  => esc_html__( 'Unibiz is a versatile modern WordPress theme designed for any niche with seamless Full Site Editing support and advanced customization, the first multipurpose theme fully compatible with FSE.', 'unibiz' ),
-			'pluginTitle'  => esc_html__( 'Plugin Requirement', 'unibiz' ),
-			'pluginDesc'   => esc_html__( 'This theme require some plugins. Please make sure all the plugin below are installed and activated.', 'unibiz' ),
-			'note'         => esc_html__( '', 'unibiz' ),
-			'note2'        => esc_html__( '', 'unibiz' ),
-			'demo'         => esc_html__( '', 'unibiz' ),
-			'demoUrl'      => esc_url( 'https://gutenverse.com/demo?name=unibiz' ),
-			'install'      => '',
-			'installText'  => esc_html__( 'Install Gutenverse Plugin', 'unibiz' ),
-			'activateText' => esc_html__( 'Activate Gutenverse Plugin', 'unibiz' ),
-			'doneText'     => esc_html__( 'Gutenverse Plugin Installed', 'unibiz' ),
-			'dashboardPage'=> admin_url( 'themes.php?page=unibiz-dashboard' ),
-			'logo'         => trailingslashit( get_template_directory_uri() ) . 'assets/img/logo-icon-unibiz.svg',
-			'slug'         => 'unibiz',
-			'upgradePro'   => 'https://gutenverse.com/pro',
-			'supportLink'  => 'https://support.jegtheme.com/forums/forum/fse-themes/',
-			'libraryApi'   => 'https://gutenverse.com//wp-json/gutenverse-server/v1',
-			'docsLink'     => 'https://support.jegtheme.com/theme/fse-themes/',
-			'pages'        => array(
+			'home_url'      => home_url(),
+			'active_plugins'=> $active_plugins,
+			'version'       => UNIBIZ_VERSION,
+			'images'        => get_template_directory_uri() . '/assets/img/',
+			'title'         => esc_html__( 'Unibiz', 'unibiz' ),
+			'description'   => esc_html__( 'Unibiz is a Multipurpose Business WordPress Block Theme built for professionals and businesses that want to create a modern, high-performing website without writing a single line of code. Built with full site editing and powered by Gutenverse, this theme delivers a flexible and fully customizable platform with 50+ ready-to-import demo sites and 80+ block elements to help you launch your site in minutes. As the first Multipurpose Business theme fully compatible with FSE, Unibiz is ideal for digital agencies, finance consultants, startup companies, life coaches, human resource agencies, and adventure travel businesses looking to establish a strong online presence. With responsive layouts, a live drag-and-drop editor, global style manager, and well-structured block patterns, you can easily customize pages, services, portfolios, and testimonials to match your brand. Optimized for speed and performance, Unibiz allows you to build a professional website that reflects your identity and grows with your Multipurpose Business needs.', 'unibiz' ),
+			'pluginTitle'   => esc_html__( 'Plugin Requirement', 'unibiz' ),
+			'pluginDesc'    => esc_html__( 'This theme require some plugins. Please make sure all the plugin below are installed and activated.', 'unibiz' ),
+			'note'          => '',
+			'note2'         => '',
+			'demo'          => '',
+			'demoUrl'       => esc_url( 'https://gutenverse.com/demo?name=unibiz' ),
+			'install'       => '',
+			'installText'   => esc_html__( 'Install Gutenverse Plugin', 'unibiz' ),
+			'activateText'  => esc_html__( 'Activate Gutenverse Plugin', 'unibiz' ),
+			'doneText'      => esc_html__( 'Gutenverse Plugin Installed', 'unibiz' ),
+			'dashboardPage' => admin_url( 'themes.php?page=unibiz-dashboard' ),
+			'logo'          => trailingslashit( get_template_directory_uri() ) . 'assets/img/logo-icon-unibiz.svg',
+			'slug'          => 'unibiz',
+			'upgradePro'    => esc_url( 'https://gutenverse.com/pricing' ),
+			'supportLink'   => esc_url( 'https://support.jegtheme.com/forums/forum/fse-themes/' ),
+			'libraryApi'    => esc_url( 'https://gutenverse.com//wp-json/gutenverse-server/v1' ),
+			'docsLink'      => esc_url( 'https://gutenverse.com/docs' ),
+			'pages'         => array(
 				
 			),
-			'plugins'      => array(
+			'plugins'       => array(
 				array(
 					'slug'       		=> 'gutenverse',
-					'title'      		=> 'Gutenverse',
-					'short_desc' 		=> 'GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS',
+					'title'      		=> esc_html__( 'Gutenverse', 'unibiz' ),
+					'short_desc' 		=> esc_html__( 'GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS', 'unibiz' ),
 					'active'    		=> in_array( 'gutenverse', $plugins, true ),
 					'installed'  		=> $this->is_installed( 'gutenverse' ),
+					'req_version'    	=> '3.2.0',
+					'installed_version' => isset( $installed_plugins['gutenverse/gutenverse.php']['Version'] ) ? $installed_plugins['gutenverse/gutenverse.php']['Version'] : '',
 					'icons'      		=> array (
   '1x' => 'https://ps.w.org/gutenverse/assets/icon-128x128.gif?rev=3132408',
   '2x' => 'https://ps.w.org/gutenverse/assets/icon-256x256.gif?rev=3132408',
@@ -1207,24 +1234,33 @@ class Init {
 				),
 				array(
 					'slug'       		=> 'gutenverse-companion',
-					'title'      		=> 'Gutenverse Companion',
-					'short_desc' 		=> 'A companion plugin designed specifically to enhance and extend the functionality of Gutenverse base themes. This plugin integrates seamlessly with the base themes, providing additional features, customization options, and advanced tools to optimize the overall user experience and streamline the development process.',
+					'title'      		=> esc_html__( 'Gutenverse Companion', 'unibiz' ),
+					'short_desc' 		=> esc_html__( 'A companion plugin designed specifically to enhance and extend the functionality of Gutenverse base themes. This plugin integrates seamlessly with the base themes, providing additional features, customization options, and advanced tools to optimize the overall user experience and streamline the development process.', 'unibiz' ),
 					'active'    		=> in_array( 'gutenverse-companion', $plugins, true ),
 					'installed'  		=> $this->is_installed( 'gutenverse-companion' ),
+					'req_version'    	=> '2.0.0',
+					'installed_version' => isset( $installed_plugins['gutenverse-companion/gutenverse-companion.php']['Version'] ) ? $installed_plugins['gutenverse-companion/gutenverse-companion.php']['Version'] : '',
 					'icons'      		=> array (
   '1x' => 'https://ps.w.org/gutenverse-companion/assets/icon-128x128.png?rev=3162415',
 ),
 					'download_url'      => '',
 				)
 			),
-			'assign'       => array(
+			'assign'        => array(
 				
 			),
-			'dashboardData'=> array(
+			'dashboardData' => array(
 				
 			),
 			
 		);
+
+		if ( 'themes.php' === $pagenow && isset( $_GET['page'] ) && 'unibiz-dashboard' === sanitize_key( wp_unslash( $_GET['page'] ) ) ) {
+			$admin_config = array(
+				
+			);
+			$config = array_merge( $config, $admin_config );
+		}
 
 		if ( isset( $config['assign'] ) && $config['assign'] ) {
 			$assign = $config['assign'];

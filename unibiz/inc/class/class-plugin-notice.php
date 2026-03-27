@@ -87,10 +87,12 @@ class Plugin_Notice {
 		$plugins_required    = array(
             array(
 					'slug'       		=> 'gutenverse',
-					'title'      		=> 'Gutenverse',
-					'short_desc' 		=> 'GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS',
+					'title'      		=> esc_html__( 'Gutenverse', 'unibiz' ),
+					'short_desc' 		=> esc_html__( 'GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS', 'unibiz' ),
 					'active'    		=> in_array( 'gutenverse', $plugins, true ),
 					'installed'  		=> $this->is_installed( 'gutenverse' ),
+					'req_version'    	=> '3.2.0',
+					'installed_version' => isset( $installed_plugins['gutenverse/gutenverse.php']['Version'] ) ? $installed_plugins['gutenverse/gutenverse.php']['Version'] : '',
 					'icons'      		=> array (
   '1x' => 'https://ps.w.org/gutenverse/assets/icon-128x128.gif?rev=3132408',
   '2x' => 'https://ps.w.org/gutenverse/assets/icon-256x256.gif?rev=3132408',
@@ -99,10 +101,12 @@ class Plugin_Notice {
 				),
 				array(
 					'slug'       		=> 'gutenverse-companion',
-					'title'      		=> 'Gutenverse Companion',
-					'short_desc' 		=> 'A companion plugin designed specifically to enhance and extend the functionality of Gutenverse base themes. This plugin integrates seamlessly with the base themes, providing additional features, customization options, and advanced tools to optimize the overall user experience and streamline the development process.',
+					'title'      		=> esc_html__( 'Gutenverse Companion', 'unibiz' ),
+					'short_desc' 		=> esc_html__( 'A companion plugin designed specifically to enhance and extend the functionality of Gutenverse base themes. This plugin integrates seamlessly with the base themes, providing additional features, customization options, and advanced tools to optimize the overall user experience and streamline the development process.', 'unibiz' ),
 					'active'    		=> in_array( 'gutenverse-companion', $plugins, true ),
 					'installed'  		=> $this->is_installed( 'gutenverse-companion' ),
+					'req_version'    	=> '2.0.0',
+					'installed_version' => isset( $installed_plugins['gutenverse-companion/gutenverse-companion.php']['Version'] ) ? $installed_plugins['gutenverse-companion/gutenverse-companion.php']['Version'] : '',
 					'icons'      		=> array (
   '1x' => 'https://ps.w.org/gutenverse-companion/assets/icon-128x128.png?rev=3162415',
 ),
@@ -114,7 +118,7 @@ class Plugin_Notice {
 		foreach ( $plugins_required as $plugin ) {
 			$slug   = $plugin['slug'];
 			$path   = "$slug/$slug.php";
-			$active = in_array($path, $active_plugins);
+			$active = in_array($path, $active_plugins, false);
 
 			if ( isset( $all_plugin[ $path ] ) ) {
 				if ( $active ) {
@@ -128,7 +132,8 @@ class Plugin_Notice {
 			}
 		}
 
-		if ( $count_plugin_active === count( $plugins_required ) ) {
+		$count_plugin_requiored = count( $plugins_required );
+		if ( $count_plugin_active === $count_plugin_requiored ) {
 			return;
 		}
 
@@ -192,33 +197,19 @@ class Plugin_Notice {
 		var actions = <?php echo wp_json_encode( $actions ); ?>;
 		let site_url = '<?php echo admin_url(); ?>';
 
-		const versionCompare = (v1, v2, operator) => {
-			const a = v1.split('.').map(Number);
-			const b = v2.split('.').map(Number);
-			const len = Math.max(a.length, b.length);
+		const UNIBIZPluginUtils = {
+			isVersionGreater(v1, v2) {
+				const a = v1.split('.').map(Number);
+				const b = v2.split('.').map(Number);
+				const len = Math.max(a.length, b.length);
 
-			for (let i = 0; i < len; i++) {
-				const num1 = a[i] || 0;
-				const num2 = b[i] || 0;
-				if (num1 > num2) {
-					switch (operator) {
-						case '>': case '>=': case '!=': return true;
-						case '<': case '<=': case '==': return false;
-					}
+				for (let i = 0; i < len; i++) {
+					const n1 = a[i] ?? 0;
+					const n2 = b[i] ?? 0;
+					if (n1 > n2) return true;
+					if (n1 < n2) return false;
 				}
-				if (num1 < num2) {
-					switch (operator) {
-						case '<': case '<=': case '!=': return true;
-						case '>': case '>=': case '==': return false;
-					}
-				}
-			}
-
-			// If equal so far
-			switch (operator) {
-				case '==': case '>=': case '<=': return true;
-				case '!=': return false;
-				case '>': case '<': return false;
+				return false;
 			}
 		};
 
@@ -229,7 +220,7 @@ class Plugin_Notice {
 				const slug = plugin.slug;
 				const path = `${slug}/${slug}`;
 				const needUpdate = plugin.installed
-					? versionCompare(plugin.version, pluginsInstalled[`${path}.php`].Version, '>')
+					? UNIBIZPluginUtils.isVersionGreater(plugin.req_version, pluginsInstalled[`${path}.php`].Version)
 					: false;
 
 				let request;
@@ -357,7 +348,7 @@ class Plugin_Notice {
 		</script>
 		<div class="notice notice-info is-dismissible unibiz-simple-notice" data-nonce="<?php echo esc_attr( wp_create_nonce( "gutenverse_companion_unibiz_dismiss" ) ); ?>">
 			<p>
-				<strong class="unibiz-notice-title"><?php esc_html_e( "Thankyou For Installing Unibiz Theme", "unibiz" ); ?></strong>
+				<strong class="unibiz-notice-title"><?php esc_html_e( "Thank you For Installing Unibiz Theme", "unibiz" ); ?></strong>
 				<span class="unibiz-notice-description">
 					<?php esc_html_e( "Unlock the full potential of your website with the recommended plugins.", "unibiz" ); ?>
 					<br/>

@@ -5,8 +5,8 @@
 return array(
 	'title'      => __( 'Unibiz Core Home Services', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
-	'content'    => '<!-- wp:group {"align":"full","className":"unibiz-world-class-container","style":{"spacing":{"padding":{"top":"150px","bottom":"150px","left":"20px","right":"20px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
-<div class="wp-block-group alignfull unibiz-world-class-container" style="padding-top:150px;padding-right:20px;padding-bottom:150px;padding-left:20px"><!-- wp:group {"style":{"spacing":{"blockGap":"60px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
+	'content'    => '<!-- wp:group {"tagName":"main","align":"full","className":"unibiz-world-class-container","style":{"spacing":{"padding":{"top":"150px","bottom":"150px","left":"20px","right":"20px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
+<main class="wp-block-group alignfull unibiz-world-class-container" style="padding-top:150px;padding-right:20px;padding-bottom:150px;padding-left:20px"><!-- wp:group {"style":{"spacing":{"blockGap":"60px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group"><!-- wp:columns {"className":"world-class-service","style":{"spacing":{"blockGap":{"left":"140px"}}}} -->
 <div class="wp-block-columns world-class-service"><!-- wp:column {"width":"614px","style":{"spacing":{"padding":{"right":"120px"}}}} -->
 <div class="wp-block-column" style="padding-right:120px;flex-basis:614px"><!-- wp:heading {"style":{"elements":{"link":{"color":{"text":"var:preset|color|gv-color-text-primary"}}},"typography":{"lineHeight":"1.25"}},"textColor":"gv-color-text-primary","fontSize":"jumbo","fontFamily":"host-grotesk"} -->
@@ -82,7 +82,7 @@ return array(
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
-<!-- /wp:group --></div>
+<!-- /wp:group --></main>
 <!-- /wp:group -->',
 	'is_sync' => false,
 );

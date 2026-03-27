@@ -1,14 +1,14 @@
 === Unibiz ===
 Contributors: Jegstudio
 Requires at least: 6.5
-Tested up to: 6.6
+Tested up to: 6.9
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Unibiz is a versatile modern WordPress theme designed for any niche with seamless Full Site Editing support and advanced customization, the first multipurpose theme fully compatible with FSE.
+Unibiz is a Multipurpose Business WordPress Block Theme built for professionals and businesses that want to create a modern, high-performing website without writing a single line of code. Built with full site editing and powered by Gutenverse, this theme delivers a flexible and fully customizable platform with 50+ ready-to-import demo sites and 80+ block elements to help you launch your site in minutes. As the first Multipurpose Business theme fully compatible with FSE, Unibiz is ideal for digital agencies, finance consultants, startup companies, life coaches, human resource agencies, and adventure travel businesses looking to establish a strong online presence. With responsive layouts, a live drag-and-drop editor, global style manager, and well-structured block patterns, you can easily customize pages, services, portfolios, and testimonials to match your brand. Optimized for speed and performance, Unibiz allows you to build a professional website that reflects your identity and grows with your Multipurpose Business needs.
 
 == Copyright ==
 
@@ -17,7 +17,7 @@ Unibiz is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
+the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
@@ -47,8 +47,8 @@ Self designed images,
 *Background 1 : unibiz/assets/img/background-hero-unibiz.webp
 *Background 2 : unibiz/assets/img/unibiz-cta-background.webp
 
-Declaring these self designed images under GPL license version 2.0 =
-License URL: http://www.gnu.org/licenses/gpl-2.0.html
+Declaring these self designed images under GPL license version 3.0 =
+License URL: http://www.gnu.org/licenses/gpl-3.0.html
 
 Google Web Fonts (Host Grotesk) By Google - https://google.com
 Copyright 2023 The Host Grotesk Project Authors (https://github.com/Element-Type/HostGrotesk)
@@ -92,12 +92,17 @@ Source: https://stocksnap.io/photo/senior-business-UTEZRDTKPP
 
 == Changelog ==
 
+= 1.0.7 =
+* Updated theme cover image
+* Updated hero section background
+
 = 1.0.6 =
 * Fix pattern preview
 * Un-synced core patterns
+* Fix "thankyou" typo 
 
 = 1.0.5 =
-* Fix pattern preview
+* fix pattern preview
 
 = 1.0.4 =
 * Update screenshot

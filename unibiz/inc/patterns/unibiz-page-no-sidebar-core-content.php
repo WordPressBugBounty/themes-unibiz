@@ -3,7 +3,7 @@
  * Pattern content.
  */
 return array(
-	'title'      => __( 'Unibiz Page No Sidebar Core Content', 'unibiz' ),
+	'title'      => __( 'Unibiz Page No Sidebar Core Content', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
 	'content'    => '<!-- wp:group {"style":{"spacing":{"padding":{"top":"48px","bottom":"80px"}}},"layout":{"type":"constrained","wideSize":"760px"}} -->
 <div class="wp-block-group" style="padding-top:48px;padding-bottom:80px"><!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"60px"}}}} -->

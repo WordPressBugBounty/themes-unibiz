@@ -3,10 +3,10 @@
  * Pattern content.
  */
 return array(
-	'title'      => __( 'Unibiz Single Core Content', 'unibiz' ),
+	'title'      => __( 'Unibiz Single Core Content', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
-	'content'    => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"48px","bottom":"80px","right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1140px","contentSize":"1140px"}} -->
-<div class="wp-block-group alignfull" style="padding-top:48px;padding-right:20px;padding-bottom:80px;padding-left:20px"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"60px","left":"60px"}}}} -->
+	'content'    => '<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"48px","bottom":"80px","right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1140px","contentSize":"1140px"}} -->
+<main class="wp-block-group alignfull" style="padding-top:48px;padding-right:20px;padding-bottom:80px;padding-left:20px"><!-- wp:columns {"style":{"spacing":{"blockGap":{"top":"60px","left":"60px"}}}} -->
 <div class="wp-block-columns"><!-- wp:column {"width":"760px","className":"unibiz-comment-column"} -->
 <div class="wp-block-column unibiz-comment-column" style="flex-basis:760px"><!-- wp:group {"className":"do-not-wrap","style":{"spacing":{"blockGap":"40px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 <div class="wp-block-group do-not-wrap"><!-- wp:group {"className":"do-not-wrap","style":{"spacing":{"blockGap":"32px"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
@@ -84,7 +84,7 @@ return array(
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:template-part {"slug":"sidebar","area":"uncategorized"} /--></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns --></div>
+<!-- /wp:columns --></main>
 <!-- /wp:group -->',
 	'is_sync' => false,
 );
