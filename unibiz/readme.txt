@@ -12,7 +12,7 @@ Unibiz is a Multipurpose Business WordPress Block Theme built for professionals 
 
 == Copyright ==
 
-Unibiz, 2025 Jegstudio
+Unibiz, 2026 Jegstudio
 Unibiz is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
@@ -91,6 +91,11 @@ Source: https://stocksnap.io/photo/senior-business-UTEZRDTKPP
 
 
 == Changelog ==
+
+= 1.0.8 =
+* Updated theme cover image
+* Updated hero section background
+* Updated section footer
 
 = 1.0.7 =
 * Updated theme cover image

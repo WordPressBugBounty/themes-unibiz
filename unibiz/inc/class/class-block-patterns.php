@@ -84,6 +84,7 @@ class Block_Patterns {
 			'unibiz-page-no-sidebar-core-content',
 			'unibiz-core-footer-alternate',
 			'unibiz-core-home-hero',
+			'unibiz-core-home-benefits',
 			'unibiz-core-home-about',
 			'unibiz-core-home-services',
 			'unibiz-core-home-clients',

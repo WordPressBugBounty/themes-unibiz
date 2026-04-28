@@ -406,7 +406,7 @@ ul > li {
 		padding-bottom: 80px !important;
 	}
 	.column-features-three-container {
-		padding-bottom: 80px !important;
+		padding-bottom: 0px !important;
 	}
 	.unibiz-world-class-container {
 		padding-top: 100px !important;
@@ -460,6 +460,10 @@ ul > li {
 	        min-height: 300px !important;
 	}
 	.unibiz-fun-fact-container .unibiz-funfact-section .wp-block-column .wp-block-cover {
+	        min-height: 300px !important;
+	}
+	
+	.unibiz-hero-container .wp-block-column .wp-block-cover {
 	        min-height: 300px !important;
 	}
 }
@@ -875,7 +879,7 @@ ul > li {
 }
 
 .core-frontpage-button:hover {
-	transform: scale(0.94);
+	transform: scale(0.96);
 }
 
 .core-frontpage-button .wp-block-button::before {

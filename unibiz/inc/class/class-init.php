@@ -55,6 +55,7 @@ class Init {
 	 */
 	private function load_hooks() {
 		add_action( 'after_setup_theme', array( $this, 'setup_theme' ) );
+		add_action( 'after_setup_theme', array( $this, 'maybe_sync_global_styles_after_version_change' ), 20 );
 		add_action( 'init', array( $this, 'register_block_patterns' ), 9 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dashboard_scripts' ) );
 
@@ -84,6 +85,64 @@ class Init {
 	 * Update Global Styles After Theme Switch
 	 */
 	public function update_global_styles_after_theme_switch() {
+		$this->sync_global_styles();
+	}
+
+	/**
+	 * Sync Global Styles after a version change.
+	 */
+	public function maybe_sync_global_styles_after_version_change() {
+		$synced_version = get_option( 'unibiz_global_styles_synced_version' );
+
+		if ( UNIBIZ_VERSION === $synced_version ) {
+			return;
+		}
+
+		$this->sync_global_styles();
+	}
+
+	/**
+	 * Sync Global Styles After Theme Update.
+	 *
+	 * @param WP_Upgrader $upgrader_object Upgrader instance.
+	 * @param array       $options         Update options.
+	 */
+	public function sync_global_styles_after_theme_update( $upgrader_object, $options ) {
+		if ( empty( $options['type'] ) || 'theme' !== $options['type'] ) {
+			return;
+		}
+
+		if ( empty( $options['action'] ) || 'update' !== $options['action'] ) {
+			return;
+		}
+
+		if ( empty( $options['themes'] ) || ! is_array( $options['themes'] ) ) {
+			return;
+		}
+
+		$current_theme = get_stylesheet();
+		$parent_theme  = get_template();
+
+		if ( ! in_array( $current_theme, $options['themes'], true ) && ! in_array( $parent_theme, $options['themes'], true ) ) {
+			return;
+		}
+
+		$this->sync_global_styles();
+	}
+
+	/**
+	 * Sync Global Styles.
+	 */
+	private function sync_global_styles() {
+		$this->sync_global_colors();
+		$this->sync_global_fonts();
+		update_option( 'unibiz_global_styles_synced_version', UNIBIZ_VERSION );
+	}
+
+	/**
+	 * Sync Global Colors.
+	 */
+	private function sync_global_colors() {
 		// Get the path to the current theme's theme.json file.
 		$theme_json_path = get_template_directory() . '/theme.json';
 		$theme_slug      = get_option( 'stylesheet' ); // Get the current theme's slug.
@@ -121,38 +180,102 @@ class Init {
 
 			// Access the color palette from the theme.json file.
 			if ( isset( $theme_json_data['settings']['color']['palette'] ) ) {
-
 				$theme_colors = $theme_json_data['settings']['color']['palette'];
+				$has_changes  = false;
 
 				// Step 5: Loop through theme.json colors and add them if they don't exist.
 				foreach ( $theme_colors as $theme_color ) {
-					if ( ! in_array( $theme_color['slug'], $existing_slugs ) ) {
+					if ( ! empty( $theme_color['slug'] ) && ! in_array( $theme_color['slug'], $existing_slugs, true ) ) {
 						$existing_colors[] = $theme_color; // Add new color to the existing palette.
+						$existing_slugs[] = $theme_color['slug'];
+						$has_changes      = true;
 					}
 				}
-				foreach ( $theme_colors as $theme_color ) {
-					$theme_slug = $theme_color['slug'];
 
-					// Step 6: Use in_array to check if the slug already exists in the global palette.
-					if ( ! in_array( $theme_slug, $existing_slugs ) ) {
-						// If the slug does not exist, add the theme color to the global palette.
-						$global_colors[] = $theme_color;
-					}
+				if ( $has_changes ) {
+					// Step 6: Update the global styles content with the new colors.
+					$global_styles_content['settings']['color']['palette']['theme'] = $existing_colors;
+
+					// Step 7: Save the updated global styles back to the post.
+					wp_update_post(
+						array(
+							'ID'           => $global_styles_post_id,
+							'post_content' => wp_json_encode( $global_styles_content ),
+						)
+					);
 				}
-				// Step 6: Update the global styles content with the new colors.
-				$global_styles_content['settings']['color']['palette']['theme'] = $existing_colors;
-
-				// Step 7: Save the updated global styles back to the post.
-				wp_update_post(
-					array(
-						'ID'           => $global_styles_post_id,
-						'post_content' => wp_json_encode( $global_styles_content ),
-					)
-				);
-
 			}
 			wp_reset_postdata(); // Reset the query.
 		}
+	}
+
+	/**
+	 * Sync Global Fonts.
+	 */
+	private function sync_global_fonts() {
+		$theme_name    = get_stylesheet();
+		$option_name   = 'gutenverse-global-variable-font-' . $theme_name;
+		$default_fonts = $this->default_font_variable();
+		$global_fonts  = get_option( $option_name );
+
+		if ( ! is_array( $global_fonts ) ) {
+			update_option( $option_name, $default_fonts );
+
+			return;
+		}
+
+		$existing_keys = array();
+		$has_changes   = false;
+
+		foreach ( $global_fonts as $font ) {
+			$font_key = $this->get_font_sync_key( $font );
+
+			if ( $font_key ) {
+				$existing_keys[] = $font_key;
+			}
+		}
+
+		foreach ( $default_fonts as $font ) {
+			$font_key = $this->get_font_sync_key( $font );
+
+			if ( $font_key && in_array( $font_key, $existing_keys, true ) ) {
+				continue;
+			}
+
+			$global_fonts[] = $font;
+			$has_changes    = true;
+
+			if ( $font_key ) {
+				$existing_keys[] = $font_key;
+			}
+		}
+
+		if ( $has_changes ) {
+			update_option( $option_name, $global_fonts );
+		}
+	}
+
+	/**
+	 * Get font sync key.
+	 *
+	 * @param array $font Font item.
+	 *
+	 * @return string
+	 */
+	private function get_font_sync_key( $font ) {
+		if ( ! empty( $font['slug'] ) ) {
+			return (string) $font['slug'];
+		}
+
+		if ( ! empty( $font['id'] ) ) {
+			return (string) $font['id'];
+		}
+
+		if ( ! empty( $font['name'] ) ) {
+			return sanitize_title( $font['name'] );
+		}
+
+		return '';
 	}
 
 	/**

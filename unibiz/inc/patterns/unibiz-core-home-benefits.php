@@ -5,8 +5,8 @@
 return array(
 	'title'      => __( 'Unibiz Core Home Benefits', 'unibiz' ),
 	'categories' => array( 'unibiz-core' ),
-	'content'    => '<!-- wp:group {"align":"full","className":"column-features-three-container","style":{"spacing":{"padding":{"top":"80px","bottom":"150px","right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
-<div class="wp-block-group alignfull column-features-three-container" style="padding-top:80px;padding-right:20px;padding-bottom:150px;padding-left:20px"><!-- wp:columns {"className":"column-features-three","style":{"spacing":{"blockGap":{"top":"32px","left":"32px"}}}} -->
+	'content'    => '<!-- wp:group {"align":"full","className":"column-features-three-container","style":{"spacing":{"padding":{"top":"140px","bottom":"0px","right":"20px","left":"20px"}}},"layout":{"type":"constrained","wideSize":"1260px"}} -->
+<div class="wp-block-group alignfull column-features-three-container" style="padding-top:140px;padding-right:20px;padding-bottom:0px;padding-left:20px"><!-- wp:columns {"className":"column-features-three","style":{"spacing":{"blockGap":{"top":"32px","left":"32px"}}}} -->
 <div class="wp-block-columns column-features-three"><!-- wp:column {"style":{"spacing":{"padding":{"top":"32px","bottom":"32px","left":"32px","right":"32px"}},"border":{"radius":"16px","width":"1px"}},"borderColor":"gv-color-border"} -->
 <div class="wp-block-column has-border-color has-gv-color-border-border-color" style="border-width:1px;border-radius:16px;padding-top:32px;padding-right:32px;padding-bottom:32px;padding-left:32px"><!-- wp:group {"style":{"spacing":{"blockGap":"24px"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"top":"12px","bottom":"12px","left":"12px","right":"12px"}},"border":{"radius":"100px"},"dimensions":{"minHeight":""},"layout":{"selfStretch":"fit","flexSize":""}},"backgroundColor":"gutenverse-bg","layout":{"type":"flex","orientation":"vertical"}} -->
