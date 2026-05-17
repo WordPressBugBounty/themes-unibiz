@@ -92,6 +92,9 @@ Source: https://stocksnap.io/photo/senior-business-UTEZRDTKPP
 
 == Changelog ==
 
+= 1.0.9 =
+* Improved Overall performance and SEO optimization
+
 = 1.0.8 =
 * Updated theme cover image
 * Updated hero section background

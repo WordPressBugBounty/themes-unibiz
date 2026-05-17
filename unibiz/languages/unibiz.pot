@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3 or later..
 msgid ""
 msgstr ""
-"Project-Id-Version: Unibiz 1.0.8\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/unibiz-kHfnXbLa0A3z\n"
+"Project-Id-Version: Unibiz 1.0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/unibiz-PwQYBASgpsMQ\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-28T05:59:08+00:00\n"
+"POT-Creation-Date: 2026-05-16T04:47:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: unibiz\n"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: inc/class/class-init.php:1347
 #: inc/class/class-plugin-notice.php:91
-msgid "GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS"
+msgid "Gutenverse is a WordPress blocks plugin, page builder, and website builder for the native Block Editor and Site Editor. Create fast, responsive websites without code using 57 blocks, 600+ templates, global styles, responsive controls, popup builder tools, and block theme support."
 msgstr ""
 
 #: inc/class/class-init.php:1360

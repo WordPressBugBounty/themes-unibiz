@@ -88,7 +88,7 @@ class Plugin_Notice {
             array(
 					'slug'       		=> 'gutenverse',
 					'title'      		=> esc_html__( 'Gutenverse', 'unibiz' ),
-					'short_desc' 		=> esc_html__( 'GUTENVERSE – GUTENBERG BLOCKS AND WEBSITE BUILDER FOR SITE EDITOR, TEMPLATE LIBRARY, POPUP BUILDER, ADVANCED ANIMATION EFFECTS, COMPLETE FEATURE ECOSYSTEM, 45+ FREE USER-FRIENDLY BLOCKS', 'unibiz' ),
+					'short_desc' 		=> esc_html__( 'Gutenverse is a WordPress blocks plugin, page builder, and website builder for the native Block Editor and Site Editor. Create fast, responsive websites without code using 57 blocks, 600+ templates, global styles, responsive controls, popup builder tools, and block theme support.', 'unibiz' ),
 					'active'    		=> in_array( 'gutenverse', $plugins, true ),
 					'installed'  		=> $this->is_installed( 'gutenverse' ),
 					'req_version'    	=> '3.2.0',
